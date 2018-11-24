@@ -24,6 +24,7 @@ const Nav = () => (
             </Link>
           </li>
         ))}
+        <li><Link href='/Home/Home'><a>变化的数据</a></Link></li>
       </ul>
     </ul>
 

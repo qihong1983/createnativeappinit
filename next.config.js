@@ -25,8 +25,27 @@
 const path = require('path')
 const withOffline = require('next-offline')
 
+const withSass = require('@zeit/next-sass');
+
+const withManifest = require('next-manifest')
 const isDev = process.env.NODE_ENV !== 'production'
 
+
+const config = {
+  distDir: 'build',
+  manifest: {
+    "name": "Nevek.co",
+    "short_name": "nevek.co",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFE066",
+    "theme_color": "#FFE066",
+    icons: false
+  }
+}
+
+const hasSass = withSass(config)
+const hasManifest = withManifest(hasSass)
 module.exports = withOffline({
   publicRuntimeConfig: {
     api: isDev ? 'http://localhost:3000' : typeof window !== 'undefined' ? '' : process.env.NOW_URL,
